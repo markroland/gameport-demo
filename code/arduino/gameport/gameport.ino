@@ -4,7 +4,7 @@ PC Propad Controller Interface
 
 Mark Roland <mark@markroland.com>
 
-6/3/2020 - Copied from Joystick code
+7/3/2020 - Copied from Joystick code
 
 */
 

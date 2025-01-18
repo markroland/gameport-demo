@@ -1,10 +1,10 @@
 /**
- * PC Controller
+ * PC Propad Gameport Controller
  *
  * Read data from the serial port and render a representation of the controller
- * 
- * Mark Roland, markroland.com 
- * 
+ *
+ * Mark Roland, markroland.com
+ *
  * 7/4/2020
  *
  */
@@ -20,39 +20,41 @@ Controller c1;
 
 PImage img;
 
+int serial_port_id;
+
 // Setup the sketch
 void setup() {
-  
-    background(128);
-  
-  // Set sketch size
-  size(400, 164);
-  
-  // Load controller image
-  img = loadImage("NES-controller-sm.png");
-  
-  // Find the Serial port (Something like /dev/cu.usbserial-A3000Ykf)
-  //printArray(Serial.list());
-  
-  // Initialize the serial port
-  myPort = new Serial(this, Serial.list()[3], 9600);
-  
-  // Initialize the joystick object
-  c1 = new Controller();
 
   smooth();
+
+  background(128);
+
+  // Set sketch size
+  size(600, 388);
+
+  // Load controller image
+  img = loadImage("data/PC_propad.jpg");
+
+  // Setup only: Find the Serial port (Something like /dev/cu.usbserial-A3000Ykf)
+  //printArray(Serial.list());
+  serial_port_id = 3;
+
+  // Initialize the serial port
+  myPort = new Serial(this, Serial.list()[serial_port_id], 9600);
+
+  // Initialize the joystick object
+  c1 = new Controller();
 }
 
 // Loop the sketch
 void draw() {
 
-  
   // Read the joystick
   c1.read();
-  
+
   // Debugging
   //c1.print_data();
-  
-  // Render a cursor
+
+  // Render canvas
   c1.render();
 }
